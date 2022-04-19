@@ -1,8 +1,8 @@
 
 name: My-GitHubActions
 env:
-  APPLICATION_NAME    : "MyFlask"
-  DEPLOY_PACKAGE_NAME : "flask-deploy-ver-${{ github.sha }}"
+  APPLICATION_NAME    : "MyApp"
+  DEPLOY_PACKAGE_NAME : "Myapp-ver-${{ github.sha }}"
 
 on: 
   push:
@@ -14,14 +14,14 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Print Hello Message in Testing
-      run : echo "Hello World from Testing job"
+    - name: Print Message in Testing
+      run : echo "Hello from Testing job"
     
-    - name: Execure few commands
+    - name: Execute few commands
       run : |
-        echo "Hello Message1"
-        echo "Hello Message2"
-        echo "Appication name: ${{ env.APPLICATION_NAME }}"
+        echo "Hello Message 1"
+        echo "Hello Message 2"
+        echo "App name: ${{ env.APPLICATION_NAME }}"
     
     - name: List current folder
       run : ls -la
@@ -29,19 +29,19 @@ jobs:
     - name: Git clone my repo
       uses: actions/checkout@v1   
   
-    - name: List current folder
+    - name: List folder
       run : ls -la
   
   my_deploy:
     runs-on: ubuntu-latest
     needs: [my_testing]
     env:
-      VAR1 : "This is Job Level Variable1"
-      VAR2 : "This is Job Lebel Variable2"
+      VAR1 : "This Job Level Variable1"
+      VAR2 : "This Job Level Variable2"
     
     steps:
-    - name: Print Hello Message in Deploy
-      run : echo "Hello World from Deploy job"
+    - name: Print Message in Deploy
+      run : echo "Hello from Deploy job"
       
     - name: Print env vars
       run : |
@@ -49,7 +49,7 @@ jobs:
         echo "Var2 = ${{ env.VAR2 }}"
         echo "Var3 = $LOCAL_VAR"
       env:
-        LOCAL_VAR: "This is Superr local Environment variable"
+        LOCAL_VAR: "This is local Environment variable"
 
     
     - name: Printing Deployment package
