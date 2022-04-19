@@ -2,7 +2,7 @@
 name: My-GitHubActions
 env:
   APPLICATION_NAME    : "MyApp"
-  DEPLOY_PACKAGE_NAME : "Myapp-ver-${{ GITHUB_SHA }}"
+  DEPLOY_PACKAGE_NAME : "Myapp-ver-${{ github.sha }}"
 on: 
   push:
     branches: 
